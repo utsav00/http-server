@@ -5,11 +5,10 @@ require 'socket'
 begin
   client = TCPSocket.new('localhost', 2000)
 
-  puts "Enter here:"
-  until (data = gets.chomp).empty? do
-    client.puts data
-    puts client.gets
-  end
+  request = "GET /users/5 HTTP/1.0\r\n"
+
+  client.puts request
+  puts client.gets
 
 rescue => e
   puts "Error occurred: #{e.inspect}"
