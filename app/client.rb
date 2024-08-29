@@ -2,13 +2,18 @@
 
 require 'socket'
 
-client = TCPSocket.new('localhost', 2000)
+begin
+  client = TCPSocket.new('localhost', 2000)
 
-puts "Enter here:"
+  puts "Enter here:"
+  until (data = gets.chomp).empty? do
+    client.puts data
+    puts client.gets
+  end
 
-while (data = gets) do
-  client.puts data
-  puts client.gets
+rescue => e
+  puts "Error occurred: #{e.inspect}"
+ensure
+  client&.close
+  puts "Connection closed!"
 end
-
-client.close
