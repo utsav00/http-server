@@ -5,5 +5,6 @@ require 'socket'
 server = TCPServer.new(2000) # Socket created and bound to port
 
 client = server.accept # Socket to communicate with the client
-client.puts "Sending something"
+client.puts "Sending something from the server"
+puts client.gets
 server.close
