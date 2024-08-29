@@ -4,7 +4,11 @@ require 'socket'
 
 client = TCPSocket.new('localhost', 2000)
 
-puts client.gets
-client.puts "Hello from the client"
+puts "Enter here:"
+
+while (data = gets) do
+  client.puts data
+  puts client.gets
+end
 
 client.close
